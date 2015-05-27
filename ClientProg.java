@@ -7,11 +7,32 @@ import java.util.Scanner;
 public class ClientProg {
 
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Please enter username (Admin/Guest): ");
-		test
 		
+		login: 
+			while(true){
+			String userName = sc.nextLine();
+			if(userName.equals("Admin")){
+				System.out.println("Please enter password:");
+				while(true){
+					String password = sc.nextLine();
+					if(password.equals("password")){
+						System.out.println("Welcome administrator, Please us the 'help' command for assistance");
+						break login;
+					}else{
+						System.out.println("Invalid password, please try again");
+					}
+				}
+			}else if(userName.equals("Guest")){
+				System.out.println("Welcome guest, Please use the 'help' command for assistance");
+				break;
+			}else{
+				System.out.println("Invalid Username, please try again: ");
+				
+			}
+		}
 		
 		
 		/*The following code is taken from the Assignment description */ 
