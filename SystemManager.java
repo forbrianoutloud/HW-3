@@ -11,11 +11,13 @@ import java.util.Map;
 
 public class SystemManager {
 	
-	Map<String,Airport> airports;
+	Map<String,Port> airports;
+	Map<String,Port> seaports;
 	Map<String,Airline> airlines;
 	
 	public SystemManager(){
-		airports = new HashMap<String,Airport>();
+		airports = new HashMap<String,Port>();
+		seaports = new HashMap<String,Port>();
 		airlines = new HashMap<String,Airline>();
 	}
 	
@@ -26,9 +28,9 @@ public class SystemManager {
 	 */
 	public void createAirport(String n){
 		if(!airports.containsKey(n)){
-			Airport airport = null;
+			Port airport = null;
 			try {
-				airport = new Airport(n);
+				airport = new Port(n);
 				airports.put(n,airport);
 			} catch (IOException e) {
 				System.err.println("Error: Failed to Create Airport " + n + ", Incorrect length");
@@ -167,7 +169,7 @@ public class SystemManager {
 	public void displaySystemDetails(){
 		System.out.println();
 		System.out.println("Airports:");
-		for (Map.Entry<String, Airport> entry : airports.entrySet()) {
+		for (Map.Entry<String, Port> entry : airports.entrySet()) {
 			System.out.println(" " + entry.getKey());
 		}
 		System.out.println();

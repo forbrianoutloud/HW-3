@@ -11,8 +11,7 @@ public class ClientProg {
 		
 		System.out.println("Please enter username (Admin/Guest): ");
 		
-		login: 
-			while(true){
+		login: while(true){
 			String userName = sc.nextLine();
 			if(userName.equals("Admin")){
 				System.out.println("Please enter password:");
