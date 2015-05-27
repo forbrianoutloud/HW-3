@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /* 
  * Josh Richmond
  * Brian Lee
@@ -5,6 +7,13 @@
 public class ClientProg {
 
 	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		
+		System.out.println("Please enter username (Admin/Guest): ");
+		test
+		
+		
+		
 		/*The following code is taken from the Assignment description */ 
 		
 		SystemManager res = new SystemManager();
