@@ -146,7 +146,7 @@ public class SystemManager {
 					FlightSection section = flight.getSection(s);
 					Seat seat = new Seat(row, col);
 					try{
-						section.bookSeat(seat);
+						section.book(seat);
 					} catch (IOException e3){
 						System.err.println("Error: Cannot book seat for Flight:" + fl + " on Airline:" + air + " Seat is already booked");
 					}

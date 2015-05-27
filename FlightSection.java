@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FlightSection {
+public class FlightSection implements Section{
 	private SeatClass s;
 	private String airlineName, flID;
 	private int rows, cols;
@@ -67,12 +67,13 @@ public class FlightSection {
 	 * and adds seat to bookedSeats list
 	 * Throws exception if seat is already booked
 	 */
-	public void bookSeat(Seat s) throws IOException{
-		int row = s.getRow()-1;
-		int col = Character.getNumericValue(s.getCol()-17); // -17 will convert A to 0, B to 1,...etc
+	public void book(Accommodation s) throws IOException{
+		Seat seat = (Seat) s;
+		int row = seat.getRow()-1;
+		int col = Character.getNumericValue(seat.getCol()-17); // -17 will convert A to 0, B to 1,...etc
 		if (seats[row][col] == 0){
 			seats[row][col] = 1;
-			bookedSeats.add(s);
+			bookedSeats.add(seat);
 		}else{
 			throw new IOException();
 		}

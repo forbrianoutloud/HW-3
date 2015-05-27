@@ -2,18 +2,13 @@
  * Josh Richmond
  * Brian Lee
  */
-public class Seat {
-	private boolean status = false;
+public class Seat extends Accommodation{
 	private int row;
 	char col;
 	public Seat(int row, char col){
+		super();
 		this.row = row;
 		this.col = col;
-		status = true;
-	}
-	
-	public boolean getStatus(){
-		return status;
 	}
 	
 	public int getRow(){
