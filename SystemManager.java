@@ -100,13 +100,14 @@ public class SystemManager {
 	}
 	
 	public void createCruise(String cruiseName, String[] sequence, int[] startDate, int[] endDate, String ID,String ship){
+		Ship tempShip = ships.get(ship).clone();
 		if(cruiselines.containsKey(cruiseName)){
-			Trip cruise = new CruiseTrip(cruiseName,sequence, startDate, endDate, ID, ships.get(ship));
+			Trip cruise = new CruiseTrip(cruiseName,sequence, startDate, endDate, ID, (Ship) tempShip);
 			 cruiselines.get(cruiseName).addTrip(cruise);
 		}else{
 			System.err.println("Error: Cannot create cruise ID:" + ID + " cruiseline:" + cruiseName + " does not exist");
 		}
-	}	
+	}
 	
 	public void createShip(String shipID){
 		if(ships.containsKey(shipID)){
@@ -119,7 +120,7 @@ public class SystemManager {
 	
 
 	
-	public void createShipSection(String companyName, String shipID, int rows, int cols, CabinClass cabinClass){
+	public void createShipSection(String companyName, String shipID, int rows, int cols, Class cabinClass){
 		if(cruiselines.containsKey(companyName)){
 			Section shipSection = new CabinSection(companyName,shipID, rows, cols,cabinClass);
 			ships.get(shipID).addSection(shipSection);
@@ -128,7 +129,7 @@ public class SystemManager {
 		}
 	}
 	
-	public void createFlightSection(String companyName, String flightID, int rows, int cols, SeatClass seatClass){
+	public void createFlightSection(String companyName, String flightID, int rows, int cols, Class seatClass){
 		if(airlines.containsKey(companyName)){
 			Section flightSection = new FlightSection(companyName,flightID, rows, cols,seatClass);
 			((Flight) airlines.get(companyName).getTrip(flightID)).addSection(flightSection);
@@ -137,21 +138,19 @@ public class SystemManager {
 		}
 	}
 	
-	public void bookSeat(String company, String flID, SeatClass s, int row, char col) throws IOException{
+	public void bookSeat(String company, String flID, Class s, int row, char col) throws IOException{
 		if(airlines.containsKey(company)){
-			Accomodation seat = new Seat(row,col);
+			Accommodation seat = new Seat(row,col);
 			airlines.get(company).getTrip(flID).getSection(s).bookAccomodation(seat);
 		}else{
 			System.err.println("error: company does not exist");
 		}
 	}
 	
-	public void bookCabin(String company, String shipID, CabinClass c, int row, char col){
+	public void bookCabin(String company, String tripID, Class c, int row, char col){
 		if(cruiselines.containsKey(company)){
-			if(ships.containsKey(shipID)){
-				Accomodation cabin = new Cabin(row,col);
-				ships.get(shipID).getSection(c).bookAccomodation(cabin);
-			}
+			Accommodation cabin = new Cabin(row,col);
+			((CruiseTrip) cruiselines.get(company).getTrip(tripID)).getShip().getSection(c).bookAccomodation(cabin);
 		}
 	}
 	
@@ -169,15 +168,16 @@ public class SystemManager {
 		}
 	}
 	
-	public void getAvailableCabins(String id){
-		for(Ship ship: ships.values()){
-			System.out.println("Available cabins on trip " + id + ":");
-			ship.displayAvailable();
+	public void getAvailableCabins(){
+		for(Company c : cruiselines.values()){
+			for(Trip t : c.getTrips().values()){
+				((CruiseTrip) t).getShip().displayAvailable();
+			}
 		}
 	}
 	
 			
-	/*Create Section:
+	/*Create Section:SeatClass
 	 * 		Creates a new flightsection object and adds section to a specific flight
 	 * 		An error is handled if the flight/airline given does not exist or the section is invalid
 	 */

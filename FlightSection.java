@@ -6,13 +6,13 @@
 
 
 public class FlightSection extends Section{
-	public SeatClass seatClass;
-	public FlightSection(String companyName, String ID, int rows, int cols, SeatClass s) {
+	public Class seatClass;
+	public FlightSection(String companyName, String ID, int rows, int cols, Class s) {
 		super(companyName, ID, rows, cols);
 		this.seatClass = s;
 	}
 	
-	public SeatClass getSeatClass(){
+	public Class getSeatClass(){
 		return seatClass;
 	}
 	

@@ -2,9 +2,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Ship {
+public class Ship{
 	private String shipID;
-	private Map<CabinClass,Section> sections = new HashMap<CabinClass,Section>();
+	private Map<Class,Section> sections = new HashMap<Class,Section>();
+	
 	public Ship(String shipID){
 		this.shipID = shipID;
 	}
@@ -19,7 +20,7 @@ public class Ship {
 			System.err.println("Error, Section already exists withing ship");
 		}
 	}
-	public Section getSection(CabinClass c){
+	public Section getSection(Class c){
 		return sections.get(c);
 	}
 	
@@ -27,5 +28,12 @@ public class Ship {
 		for(Section s : sections.values()){
 			s.displayAvailable();
 		}
+	}
+	public Ship clone(){
+		Ship cloneShip = new Ship(this.shipID);
+		for (Section s : sections.values()){
+			cloneShip.addSection(s);
+		}
+		return cloneShip;
 	}
 }

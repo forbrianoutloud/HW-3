@@ -79,14 +79,18 @@ public class ClientProg {
 		res.createShip("testShip");
 		
 		res.createCruise("Carnival", tempSeq, startDate, endDate, "124","testShip");
+		tempSeq = new String[]{"ss1","ss2"};
+		startDate = new int[]{6,16,2015};
+		endDate = new int[]{6,20,2015};
+		res.createCruise("Carnival", tempSeq, startDate, endDate, "125", "testShip");
 		
 
 		
-		res.createShipSection("Carnival", "testShip", 1, 1, CabinClass.couples);
-		res.createShipSection("Carnival", "testShip", 1, 1, CabinClass.family);
+		res.createShipSection("Carnival", "testShip", 1, 1, Class.couples);
+		res.createShipSection("Carnival", "testShip", 1, 1, Class.family);
 		
 
-		res.createFlightSection("DELTA", "123"	, 2, 2, SeatClass.business);
+		res.createFlightSection("DELTA", "123"	, 2, 2, Class.business);
 		
 //		try {
 //			res.bookSeat("DELTA", "123",SeatClass.business,1,'A');
@@ -101,14 +105,14 @@ public class ClientProg {
 		
 //		res.airlineState();
 //		res.cruiselineState();
-		res.getAvailableCabins("testShip");
+//		res.getAvailableCabins("testShip");
 		
 		if(user.equals(User.Guest)){
 			String company;
 			String ID;
 			String c;
-			CabinClass cabin = null;
-			SeatClass seat = null;
+			Class cabin = null;
+			Class seat = null;
 			int row;
 			String col;
 			
@@ -135,13 +139,13 @@ public class ClientProg {
 					c = sc .next();
 					switch(c){
 					case "Economy":
-						seat = SeatClass.economy;
+						seat = Class.economy;
 						break;
 					case "Business":
-						seat = SeatClass.business;
+						seat = Class.business;
 						break;
 					case "First":
-						seat = SeatClass.first;
+						seat = Class.first;
 						break;
 					default:
 						System.err.println("Invalid seat class");
@@ -160,24 +164,24 @@ public class ClientProg {
 					}
 					break;
 				case "Find Cabin":
+					res.getAvailableCabins();
 					break;
 				case "Book Cabin":
 					System.out.println("Please enter name of cruiseline: ");
 					company = sc.nextLine();
-					System.out.println("Please enter ship id: ");
+					System.out.println("Please enter trip id: ");
 					ID = sc.nextLine();
 					System.out.println("Please enter cabin class (Family/Deluxe Family/Couples/Deluxe Couples)");
 					c = sc.nextLine();
 					switch(c){
 					case "Family":
-						cabin = CabinClass.family;
+						cabin = Class.family;
 						break;
 					case "Deluxe Family":
-						cabin = CabinClass.deluxeFamily;
+						cabin = Class.deluxeFamily;
 						break;
 					case "Couples":
-						cabin = CabinClass.couples;
-						break;
+						cabin = Class.couples;
 					case "Deluxe Couples":
 						break;
 					default:

@@ -11,7 +11,9 @@ public abstract class Trip {
 	private String[] sequence;
 	
 	
-	Map<SeatClass,Section> sections = new HashMap<SeatClass,Section>();
+	
+	
+	Map<Class,Section> sections = new HashMap<Class,Section>();
 	
 	public Trip(String companyName, String[] sequence, int[] startDate, int[] endDate, String tripID){
 		this.tripID = tripID;
@@ -40,7 +42,7 @@ public abstract class Trip {
 	}
 	
 	/* throws exception if section doesn't exist */
-	public Section getSection(SeatClass s) throws IOException{
+	public Section getSection(Class s) throws IOException{
 		if (sections.get(s) != null){
 			return sections.get(s);
 		}else{

@@ -7,7 +7,7 @@ public abstract class Section {
 	private String companyName, ID;
 	private int rows, cols;
 	private int[][] seats;
-	private List<Accomodation> booked = new ArrayList<Accomodation>();
+	private List<Accommodation> booked = new ArrayList<Accommodation>();
 	
 	public Section (String companyName, String ID, int rows, int cols){
 		this.companyName = companyName;
@@ -17,7 +17,7 @@ public abstract class Section {
 		seats = new int[rows][cols];
 	}
 	
-	public void bookAccomodation(Accomodation a){
+	public void bookAccomodation(Accommodation a){
 		int row = a.getRow()-1;
 		int col = Character.getNumericValue(a.getCol()-17);
 		if(seats[row][col] == 0){
@@ -31,7 +31,7 @@ public abstract class Section {
 	
 	public void diplayDetails(){
 		System.out.println("        Booked Accomodations:");
-		for(Accomodation a : booked){
+		for(Accommodation a : booked){
 			System.out.println("         row-" + a.getRow() + " col-" + a.getCol());
 		}
 		
