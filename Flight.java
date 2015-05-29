@@ -8,13 +8,13 @@ import java.util.Map;
 
 
 public class Flight extends Trip{
-	
 
-	public Flight(String airlineName, String orig, String dest, int year,
-			int month, int day, String flID) {
-		super(airlineName, orig, dest, year, month, day, flID);
-
+	public Flight(String companyName, String[] sequence, int[] startDate,
+			int[] endDate, String tripID) {
+		super(companyName, sequence, startDate, endDate, tripID);
+		// TODO Auto-generated constructor stub
 	}
+	
 }
 	
 	/* map used to store sections of each flight */
