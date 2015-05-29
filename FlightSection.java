@@ -8,9 +8,14 @@ import java.util.List;
 
 
 public class FlightSection extends Section{
-
+	public SeatClass seatClass;
 	public FlightSection(String companyName, String ID, int rows, int cols, SeatClass s) {
-		super(companyName, ID, rows, cols, s);
+		super(companyName, ID, rows, cols);
+		this.seatClass = s;
+	}
+	
+	public SeatClass getSeatClass(){
+		return seatClass;
 	}
 	
 	

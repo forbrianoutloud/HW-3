@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 
 public class SystemManager {
 	
@@ -15,12 +17,14 @@ public class SystemManager {
 	Map<String,Port> seaports;
 	Map<String, Company> airlines;
 	Map<String, Company> cruiselines;
+	Map<String, Ship> ships;
 	
 	public SystemManager(){
 		airports = new HashMap<String,Port>();
 		seaports = new HashMap<String,Port>();
 		airlines = new HashMap<String,Company>();
 		cruiselines = new HashMap<String,Company>();
+		ships = new HashMap<String,Ship>();
 	}
 	
 	/*Create Airport:
@@ -106,6 +110,37 @@ public class SystemManager {
 			System.err.println("Error: Cannot create cruise ID:" + ID + " cruiseline:" + cruiseName + " does not exist");
 		}
 	}	
+	
+	public void createShip(String shipID){
+		if(ships.containsKey(shipID)){
+			System.err.println("Error: ship already exists");
+		}else{
+			Ship ship = new Ship(shipID);
+			ships.put(shipID, ship);
+		}
+	}
+	
+
+	
+	public void createShipSection(String companyName, String shipID, int rows, int cols, CabinClass cabinClass){
+		if(cruiselines.containsKey(companyName)){
+			Section shipSection = new CabinSection(companyName,shipID, rows, cols,cabinClass);
+			ships.get(shipID).addSection(shipSection);
+		}else{
+			System.err.println("Error company does not exist");
+		}
+	}
+	
+	public void createFlightSection(String companyName, String flightID, int rows, int cols, SeatClass seatClass){
+		if(airlines.containsKey(companyName)){
+			Section flightSection = new FlightSection(companyName,flightID, rows, cols,seatClass);
+			((Flight) airlines.get(companyName).getTrip(flightID)).addSection(flightSection);
+		}else{
+			System.err.println("Error company does not exist");
+		}
+	}
+	
+			
 	/*Create Section:
 	 * 		Creates a new flightsection object and adds section to a specific flight
 	 * 		An error is handled if the flight/airline given does not exist or the section is invalid

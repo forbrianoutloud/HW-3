@@ -27,5 +27,9 @@ public abstract class Company {
 		}
 	}
 	
+	public HashMap<String,Trip> getTrips(){
+		return trips;
+	}
+	
 
 }

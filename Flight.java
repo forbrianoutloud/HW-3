@@ -15,6 +15,14 @@ public class Flight extends Trip{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public void addSection(Section section){
+		if(!sections.containsKey(((FlightSection) section).getSeatClass())){
+			sections.put(((FlightSection) section).getSeatClass(), section);
+		}else{
+			System.err.println("Error, Section already exists withing flight");
+		}
+	}
+	
 }
 	
 	/* map used to store sections of each flight */

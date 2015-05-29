@@ -26,13 +26,13 @@ public abstract class Trip {
 	
 	/* Adds a section
 	 * If the section already exists an error is displayed */
-	public void addSection(Section section){
-		if(!sections.containsKey(section.getSeatClass())){
-			sections.put(section.getSeatClass(),section);
-		}else{
-			System.err.println("Error: Failed to create section for flight:" + tripID + " on Airline:" + companyName + " class:" + section.getSeatClass().toString() + " already exists");
-		}
-	}
+//	public void addSection(Section section){
+//		if(!sections.containsKey(section.getSeatClass())){
+//			sections.put(section.getSeatClass(),section);
+//		}else{
+//			System.err.println("Error: Failed to create section for flight:" + tripID + " on Airline:" + companyName + " class:" + section.getSeatClass().toString() + " already exists");
+//		}
+//	}
 	
 	public String getAirline(){
 		return this.companyName;

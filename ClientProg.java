@@ -67,6 +67,15 @@ public class ClientProg {
 		
 		res.createCruise("Carnival", tempSeq, startDate, endDate, "124");
 		
+		res.createShip("testShip");
+		
+		res.createShipSection("Carnival", "testShip", 1, 1, CabinClass.couples);
+		res.createShipSection("Carnival", "testShip", 1, 1, CabinClass.family);
+		
+		res.createFlightSection("Delta", "123"	, 2, 2, SeatClass.business);
+		res.createFlightSection("DELTA", "123"	, 2, 2, SeatClass.business);
+		
+		
 		
 		
 //		res.createAirport("DE");

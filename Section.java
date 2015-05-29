@@ -8,20 +8,17 @@ public abstract class Section {
 	private String companyName, ID;
 	private int rows, cols;
 	private int[][] seats;
-	private List<Seat> bookedSeats = new ArrayList<Seat>();
+	private List<Accomodation> booked = new ArrayList<Accomodation>();
 	
-	public Section (String companyName, String ID, int rows, int cols, SeatClass s){
+	public Section (String companyName, String ID, int rows, int cols){
 		this.companyName = companyName;
 		this.ID = ID;
 		this.rows = rows;
 		this.cols = cols;
-		this.s = s;
 		seats = new int[rows][cols];
 	}
 	
-	public SeatClass getSeatClass(){
-		return s;
-	}
+
 	
 	
 }

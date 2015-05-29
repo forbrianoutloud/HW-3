@@ -1,7 +1,12 @@
 
 public class CabinSection extends Section{
-
-	public CabinSection(String companyName, String ID, int rows, int cols, SeatClass s) {
-		super(companyName, ID, rows, cols, s);
+	private CabinClass cabinClass;
+	public CabinSection(String companyName, String ID, int rows, int cols, CabinClass cabinClass) {
+		super(companyName, ID, rows, cols);
+		this.cabinClass = cabinClass;
+	}
+	
+	public CabinClass getCabinClass(){
+		return cabinClass;
 	}
 }
