@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 /* 
@@ -5,12 +6,18 @@ import java.util.Scanner;
  * Brian Lee
  */
 public class ClientProg {
+	public enum User{
+		Guest,Admin;
+	}
 
 	public static void main(String[] args) {
+		
 		String[] tempSeq;
 		int[] startDate;
 		int[] endDate;
+		User user;
 		Scanner sc = new Scanner(System.in);
+		SystemManager res = new SystemManager();
 		
 		System.out.println("Please enter username (Admin/Guest): ");
 		
@@ -22,6 +29,7 @@ public class ClientProg {
 					String password = sc.nextLine();
 					if(password.equals("password")){
 						System.out.println("Welcome administrator, Please us the 'help' command for assistance");
+						user = User.Admin;
 						break login;
 					}else{
 						System.out.println("Invalid password, please try again");
@@ -29,6 +37,7 @@ public class ClientProg {
 				}
 			}else if(userName.equals("Guest")){
 				System.out.println("Welcome guest, Please use the 'help' command for assistance");
+				user = User.Guest;
 				break;
 			}else{
 				System.out.println("Invalid Username, please try again: ");
@@ -36,10 +45,12 @@ public class ClientProg {
 			}
 		}
 		
+
+		
 		
 		/*The following code is taken from the Assignment description */ 
 		
-		SystemManager res = new SystemManager();
+
 		
 		res.createAirport("DEN");
 		res.createAirport("DFW");	
@@ -63,17 +74,130 @@ public class ClientProg {
 		
 		tempSeq = new String[]{"ss1","ss2","ss3"};
 		startDate = new int[]{5,28,2015};
-		endDate = new int[]{6,15,2015};
-		
-		res.createCruise("Carnival", tempSeq, startDate, endDate, "124");
+		endDate = new int[]{6,15,2015};		
 		
 		res.createShip("testShip");
+		
+		res.createCruise("Carnival", tempSeq, startDate, endDate, "124","testShip");
+		
+
 		
 		res.createShipSection("Carnival", "testShip", 1, 1, CabinClass.couples);
 		res.createShipSection("Carnival", "testShip", 1, 1, CabinClass.family);
 		
-		res.createFlightSection("Delta", "123"	, 2, 2, SeatClass.business);
+
 		res.createFlightSection("DELTA", "123"	, 2, 2, SeatClass.business);
+		
+//		try {
+//			res.bookSeat("DELTA", "123",SeatClass.business,1,'A');
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("Error should happen here");
+//		res.bookCabin("Carnival", "testShip",CabinClass.couples,1,'A');
+	
+
+		
+//		res.airlineState();
+//		res.cruiselineState();
+		res.getAvailableCabins("testShip");
+		
+		if(user.equals(User.Guest)){
+			String company;
+			String ID;
+			String c;
+			CabinClass cabin = null;
+			SeatClass seat = null;
+			int row;
+			String col;
+			
+			test : while(true){
+				System.out.println("Please enter command:");
+				String cmd = sc.nextLine();
+				
+				switch(cmd){
+				case "help":
+					System.out.println("Here is a list of commands:");
+					System.out.println(" 'Find Seat'   Finds all available seats on a flight.");
+					System.out.println(" 'Book Seat'   Books an available seat on a flight.");
+					System.out.println(" 'Find Cabin'  Finds all available cabins on a cruise.");
+					System.out.println(" 'Book Cabin'  Books an available cabin on a cruise.");
+					break;
+				case "Find Seat":
+					break;
+				case "Book Seat":
+					System.out.println("Please enter name of airline:");
+					company = sc.next();
+					System.out.println("Please enter flight id:");
+					ID = sc.next();
+					System.out.println("Please enter seat class (Economy,Business,First)");
+					c = sc .next();
+					switch(c){
+					case "Economy":
+						seat = SeatClass.economy;
+						break;
+					case "Business":
+						seat = SeatClass.business;
+						break;
+					case "First":
+						seat = SeatClass.first;
+						break;
+					default:
+						System.err.println("Invalid seat class");
+						break;
+					}
+					System.out.println("Please enter row");
+					row = sc.nextInt();
+					sc.nextLine();
+					System.out.println("Please enter col");
+					col = sc.nextLine();
+					try {
+						res.bookSeat(company, ID, seat, row, col.charAt(0));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case "Find Cabin":
+					break;
+				case "Book Cabin":
+					System.out.println("Please enter name of cruiseline: ");
+					company = sc.nextLine();
+					System.out.println("Please enter ship id: ");
+					ID = sc.nextLine();
+					System.out.println("Please enter cabin class (Family/Deluxe Family/Couples/Deluxe Couples)");
+					c = sc.nextLine();
+					switch(c){
+					case "Family":
+						cabin = CabinClass.family;
+						break;
+					case "Deluxe Family":
+						cabin = CabinClass.deluxeFamily;
+						break;
+					case "Couples":
+						cabin = CabinClass.couples;
+						break;
+					case "Deluxe Couples":
+						break;
+					default:
+						System.err.println("Invalid entry");
+					}
+					System.out.println("Please enter row");
+					row = sc.nextInt();
+					sc.nextLine();
+					System.out.println("Please enter col");
+					col = sc.nextLine();
+					res.bookCabin(company,ID,cabin,row,col.charAt(0));
+					break;
+				default:
+					System.out.println("no such command");
+					break;
+				}
+			}
+		}
+		
+		
 		
 		
 		

@@ -6,4 +6,6 @@ public class Seat extends Accomodation{
 	public Seat(int row, char col) {
 		super(row, col);
 	}
+	
+	
 }

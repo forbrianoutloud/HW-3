@@ -9,6 +9,10 @@ public abstract class Company {
 		companyName = name;
 	}
 	
+	public String getCompany(){
+		return companyName;
+	}
+	
 
 	public void addTrip(Trip trip){
 		String tripID = trip.getID();
@@ -29,6 +33,13 @@ public abstract class Company {
 	
 	public HashMap<String,Trip> getTrips(){
 		return trips;
+	}
+	
+	public void displayDetails(){
+		System.out.println("  " + companyName + ":");
+		for(Trip trip: trips.values()){
+			trip.diplayDetails();
+		}
 	}
 	
 

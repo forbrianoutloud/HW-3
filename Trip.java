@@ -10,6 +10,7 @@ public abstract class Trip {
 	private int[] endDate;
 	private String[] sequence;
 	
+	
 	Map<SeatClass,Section> sections = new HashMap<SeatClass,Section>();
 	
 	public Trip(String companyName, String[] sequence, int[] startDate, int[] endDate, String tripID){
@@ -34,7 +35,7 @@ public abstract class Trip {
 //		}
 //	}
 	
-	public String getAirline(){
+	public String getCompany(){
 		return this.companyName;
 	}
 	
@@ -44,6 +45,34 @@ public abstract class Trip {
 			return sections.get(s);
 		}else{
 			throw new IOException();
+		}
+	}
+	
+	public void diplayDetails(){
+		System.out.println("    Trip ID: " + tripID);
+		System.out.print("      Route - ");
+		int i = 0;
+		for(i = 0; i < sequence.length - 1;i++){
+			System.out.print(sequence[i] + " -> " );
+		}
+		System.out.println(sequence[i]);
+		
+		System.out.print("      StartDate: ");
+		for(i = 0; i < startDate.length -1; i++){
+			System.out.print(startDate[i] + "/");
+		}
+		System.out.println(startDate[i]);
+		
+		System.out.print("      endDate: ");
+		for(i = 0; i < endDate.length -1; i++){
+			System.out.print(endDate[i] + "/");
+		}
+		System.out.println(endDate[i]);
+		
+		System.out.println("      Sections:");
+		for(Section section : sections.values()){
+			System.out.println("       " + ((FlightSection) section).getSeatClass());
+			section.diplayDetails();
 		}
 	}
 

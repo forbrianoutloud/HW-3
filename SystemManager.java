@@ -3,12 +3,9 @@
  * Brian Lee
  */
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 
 public class SystemManager {
@@ -102,9 +99,9 @@ public class SystemManager {
 		}
 	}
 	
-	public void createCruise(String cruiseName, String[] sequence, int[] startDate, int[] endDate, String ID){
+	public void createCruise(String cruiseName, String[] sequence, int[] startDate, int[] endDate, String ID,String ship){
 		if(cruiselines.containsKey(cruiseName)){
-			Trip cruise = new CruiseTrip(cruiseName,sequence, startDate, endDate, ID);
+			Trip cruise = new CruiseTrip(cruiseName,sequence, startDate, endDate, ID, ships.get(ship));
 			 cruiselines.get(cruiseName).addTrip(cruise);
 		}else{
 			System.err.println("Error: Cannot create cruise ID:" + ID + " cruiseline:" + cruiseName + " does not exist");
@@ -137,6 +134,45 @@ public class SystemManager {
 			((Flight) airlines.get(companyName).getTrip(flightID)).addSection(flightSection);
 		}else{
 			System.err.println("Error company does not exist");
+		}
+	}
+	
+	public void bookSeat(String company, String flID, SeatClass s, int row, char col) throws IOException{
+		if(airlines.containsKey(company)){
+			Accomodation seat = new Seat(row,col);
+			airlines.get(company).getTrip(flID).getSection(s).bookAccomodation(seat);
+		}else{
+			System.err.println("error: company does not exist");
+		}
+	}
+	
+	public void bookCabin(String company, String shipID, CabinClass c, int row, char col){
+		if(cruiselines.containsKey(company)){
+			if(ships.containsKey(shipID)){
+				Accomodation cabin = new Cabin(row,col);
+				ships.get(shipID).getSection(c).bookAccomodation(cabin);
+			}
+		}
+	}
+	
+	public void airlineState(){
+		System.out.println("Airline Subsystem Information");
+		for(Company airline : airlines.values()){
+			airline.displayDetails();
+		}
+	}
+	
+	public void cruiselineState(){
+		System.out.println("Cruisline Substystem Information");
+		for (Company cruiseline : cruiselines.values()){
+			cruiseline.displayDetails();
+		}
+	}
+	
+	public void getAvailableCabins(String id){
+		for(Ship ship: ships.values()){
+			System.out.println("Available cabins on trip " + id + ":");
+			ship.displayAvailable();
 		}
 	}
 	

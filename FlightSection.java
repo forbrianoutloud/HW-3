@@ -2,9 +2,7 @@
  * Josh Richmond
  * Brian Lee
  */
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 public class FlightSection extends Section{

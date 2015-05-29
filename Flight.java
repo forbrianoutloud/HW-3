@@ -2,9 +2,7 @@
  * Josh Richmond
  * Brian Lee
  */
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+
 
 
 public class Flight extends Trip{
@@ -22,7 +20,6 @@ public class Flight extends Trip{
 			System.err.println("Error, Section already exists withing flight");
 		}
 	}
-	
 }
 	
 	/* map used to store sections of each flight */
