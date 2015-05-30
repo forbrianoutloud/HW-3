@@ -14,8 +14,8 @@ public class Flight extends Trip{
 	}
 	
 	public void addSection(Section section){
-		if(!sections.containsKey(((FlightSection) section).getSeatClass())){
-			sections.put(((FlightSection) section).getSeatClass(), section);
+		if(!sections.containsKey( section.getclass())){
+			sections.put(section.getclass(), section);
 		}else{
 			System.err.println("Error, Section already exists withing flight");
 		}

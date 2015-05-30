@@ -100,9 +100,9 @@ public class SystemManager {
 	}
 	
 	public void createCruise(String cruiseName, String[] sequence, int[] startDate, int[] endDate, String ID,String ship){
-		Ship tempShip = ships.get(ship).clone();
+		Ship tempShip = ships.get(ship);
 		if(cruiselines.containsKey(cruiseName)){
-			Trip cruise = new CruiseTrip(cruiseName,sequence, startDate, endDate, ID, (Ship) tempShip);
+			Trip cruise = new CruiseTrip(cruiseName,sequence, startDate, endDate, ID, tempShip);
 			 cruiselines.get(cruiseName).addTrip(cruise);
 		}else{
 			System.err.println("Error: Cannot create cruise ID:" + ID + " cruiseline:" + cruiseName + " does not exist");
@@ -150,7 +150,13 @@ public class SystemManager {
 	public void bookCabin(String company, String tripID, Class c, int row, char col){
 		if(cruiselines.containsKey(company)){
 			Accommodation cabin = new Cabin(row,col);
-			((CruiseTrip) cruiselines.get(company).getTrip(tripID)).getShip().getSection(c).bookAccomodation(cabin);
+
+			try {
+				cruiselines.get(company).getTrip(tripID).getSection(c).bookAccomodation(cabin);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -169,10 +175,16 @@ public class SystemManager {
 	}
 	
 	public void getAvailableCabins(){
+		System.out.println("Available Accomodations on cruises:");
 		for(Company c : cruiselines.values()){
-			for(Trip t : c.getTrips().values()){
-				((CruiseTrip) t).getShip().displayAvailable();
-			}
+			c.findAvailable();
+		}
+	}
+	
+	public void getAvailableSeats(){
+		System.out.println("Available Accomodations on cruises:");
+		for(Company a : airlines.values()){
+			a.findAvailable();
 		}
 	}
 	

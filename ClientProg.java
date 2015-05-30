@@ -76,7 +76,10 @@ public class ClientProg {
 		startDate = new int[]{5,28,2015};
 		endDate = new int[]{6,15,2015};		
 		
-		res.createShip("testShip");
+		res.createShip("testShip");		
+		res.createShipSection("Carnival", "testShip", 2, 2, Class.couples);
+		res.createShipSection("Carnival", "testShip", 8, 2, Class.family);
+		
 		
 		res.createCruise("Carnival", tempSeq, startDate, endDate, "124","testShip");
 		tempSeq = new String[]{"ss1","ss2"};
@@ -85,10 +88,7 @@ public class ClientProg {
 		res.createCruise("Carnival", tempSeq, startDate, endDate, "125", "testShip");
 		
 
-		
-		res.createShipSection("Carnival", "testShip", 1, 1, Class.couples);
-		res.createShipSection("Carnival", "testShip", 1, 1, Class.family);
-		
+
 
 		res.createFlightSection("DELTA", "123"	, 2, 2, Class.business);
 		
@@ -103,9 +103,9 @@ public class ClientProg {
 	
 
 		
-//		res.airlineState();
-//		res.cruiselineState();
-//		res.getAvailableCabins("testShip");
+		res.airlineState();
+		res.cruiselineState();
+		res.getAvailableCabins();
 		
 		if(user.equals(User.Guest)){
 			String company;
@@ -129,6 +129,7 @@ public class ClientProg {
 					System.out.println(" 'Book Cabin'  Books an available cabin on a cruise.");
 					break;
 				case "Find Seat":
+					res.getAvailableSeats();
 					break;
 				case "Book Seat":
 					System.out.println("Please enter name of airline:");

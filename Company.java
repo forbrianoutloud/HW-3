@@ -42,5 +42,12 @@ public abstract class Company {
 		}
 	}
 	
+	public void findAvailable(){
+		System.out.println("  " + companyName + ":");
+		for(Trip trip: trips.values()){
+			trip.findAvailable();
+		}
+	}
+	
 
 }

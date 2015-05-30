@@ -14,8 +14,8 @@ public class Ship{
 		return shipID;
 	}
 	public void addSection(Section section){
-		if(!sections.containsKey(((CabinSection) section).getCabinClass())){
-			sections.put(((CabinSection) section).getCabinClass(), section);
+		if(!sections.containsKey(section.getclass())){
+			sections.put(section.getclass(), section);
 		}else{
 			System.err.println("Error, Section already exists withing ship");
 		}
@@ -24,16 +24,8 @@ public class Ship{
 		return sections.get(c);
 	}
 	
-	public void displayAvailable(){
-		for(Section s : sections.values()){
-			s.displayAvailable();
-		}
-	}
-	public Ship clone(){
-		Ship cloneShip = new Ship(this.shipID);
-		for (Section s : sections.values()){
-			cloneShip.addSection(s);
-		}
-		return cloneShip;
+
+	public Map<Class,Section> getSections(){
+		return sections;
 	}
 }

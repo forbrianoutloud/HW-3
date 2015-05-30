@@ -73,9 +73,35 @@ public abstract class Trip {
 		
 		System.out.println("      Sections:");
 		for(Section section : sections.values()){
-			System.out.println("       " + ((FlightSection) section).getSeatClass());
+			System.out.println("       " + section.getclass());
 			section.diplayDetails();
 		}
+	}
+	
+	public void findAvailable(){
+		int i;
+		System.out.println("    Trip ID: " + tripID);
+		System.out.print("    StartDate: ");
+		for(i = 0; i < startDate.length -1; i++){
+			System.out.print(startDate[i] + "/");
+		}
+		System.out.println(startDate[i]);
+		
+		System.out.print("    endDate: ");
+		for(i = 0; i < endDate.length -1; i++){
+			System.out.print(endDate[i] + "/");
+		}
+		System.out.println(endDate[i]);
+		
+		System.out.println("      Sections:");
+		for(Section section : sections.values()){
+			System.out.println("       " + section.getclass());
+			section.findAvailable();
+		}
+	}
+	
+	public Map<Class,Section> getSections(){
+		return sections;
 	}
 
 	

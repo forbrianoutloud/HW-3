@@ -8,13 +8,14 @@ public abstract class Section {
 	private int rows, cols;
 	private int[][] seats;
 	private List<Accommodation> booked = new ArrayList<Accommodation>();
-	
-	public Section (String companyName, String ID, int rows, int cols){
+    private Class c;
+	public Section (String companyName, String ID, int rows, int cols, Class c){
 		this.companyName = companyName;
 		this.ID = ID;
 		this.rows = rows;
 		this.cols = cols;
 		seats = new int[rows][cols];
+		this.c = c;
 	}
 	
 	public void bookAccomodation(Accommodation a){
@@ -36,13 +37,28 @@ public abstract class Section {
 		}
 		
 	}
+	public String getCompanyName(){
+		return companyName;
+	}
+	public String getID(){
+		return ID;
+	}
+	public int getRows(){
+		return rows;
+	}
+	public int getCols(){
+		return cols;
+	}
+	public Class getclass(){
+		return c;
+	}
 	
-	public void displayAvailable(){
+	public void findAvailable(){
 		int i;
 		for(i = 0; i < rows; i++){
 			for(int j = 0; j < cols;j++){
 				if(seats[i][j] == 0){
-					System.out.println("    row-" + (i+1) + "  col-" + Character.toChars(j+65)[0]);
+					System.out.println("         row-" + (i+1) + "  col-" + Character.toChars(j+65)[0]);
 				}
 			}
 		}
