@@ -5,6 +5,7 @@
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 
 
@@ -99,7 +100,7 @@ public class SystemManager {
 		}
 	}
 	
-	public void createCruise(String cruiseName, String[] sequence, int[] startDate, int[] endDate, String ID,String ship){
+	public void createCruiseTrip(String cruiseName, String[] sequence, int[] startDate, int[] endDate, String ID,String ship){
 		Ship tempShip = ships.get(ship);
 		if(cruiselines.containsKey(cruiseName)){
 			Trip cruise = new CruiseTrip(cruiseName,sequence, startDate, endDate, ID, tempShip);
@@ -168,7 +169,7 @@ public class SystemManager {
 	}
 	
 	public void cruiselineState(){
-		System.out.println("Cruisline Substystem Information");
+		System.out.println("Cruiseline Substystem Information");
 		for (Company cruiseline : cruiselines.values()){
 			cruiseline.displayDetails();
 		}
@@ -176,19 +177,62 @@ public class SystemManager {
 	
 	public void getAvailableCabins(){
 		System.out.println("Available Accomodations on cruises:");
-		for(Company c : cruiselines.values()){
-			c.findAvailable();
+		if (airlines.isEmpty()){
+			System.out.println("\tnone");
+		}else{
+			for(Company c : cruiselines.values()){
+				c.findAvailable();
+			}
 		}
 	}
 	
 	public void getAvailableSeats(){
 		System.out.println("Available Accomodations on cruises:");
-		for(Company a : airlines.values()){
-			a.findAvailable();
+		if (airlines.isEmpty()){
+			System.out.println("\tnone");
+		}else{
+			for(Company a : airlines.values()){
+				a.findAvailable();
+			}
 		}
 	}
 	
-			
+	public Company getCruiseline(String cruiseline){
+		return cruiselines.get(cruiseline);
+	}
+	
+	public Company getAirline(String airline){
+		return airlines.get(airline);
+	}
+	
+	public boolean doesTripExist(Company c, String tripID){
+		if (c.getTrip(tripID) != null){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean doesAirportExist(String port){
+		if (airports.get(port) != null){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean doesSeaportExist(String port){
+		if (seaports.get(port) != null){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean doesShipExist(String shipName){
+		if (ships.get(shipName) != null){
+			return true;
+		}
+		return false;
+	}
+	
 	/*Create Section:SeatClass
 	 * 		Creates a new flightsection object and adds section to a specific flight
 	 * 		An error is handled if the flight/airline given does not exist or the section is invalid
