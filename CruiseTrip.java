@@ -7,6 +7,7 @@ public class CruiseTrip extends Trip{
 	}
 	
 	public void addShip(Ship ship){
+		this.ship = ship;
 		for(Section s : ship.getSections().values()){
 			Section temp = new CabinSection(s.getCompanyName(),s.getID(),s.getRows(),s.getCols(),  s.getclass());
 			sections.put( s.getclass(), temp);
