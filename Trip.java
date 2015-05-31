@@ -23,6 +23,14 @@ public abstract class Trip {
 		return this.tripID;
 	}
 	
+	public int[] getStartDate(){
+		return startDate;
+	}
+			
+	public int[] getEndDate(){
+		return endDate;
+	}
+	
 	/* Adds a section
 	 * If the section already exists an error is displayed */
 //	public void addSection(Section section){

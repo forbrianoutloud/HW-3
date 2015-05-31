@@ -5,6 +5,7 @@
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Date;
 
 public class SystemManager {
 	
@@ -97,11 +98,31 @@ public class SystemManager {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void createCruiseTrip(String cruiseName, String[] sequence, int[] startDate, int[] endDate, String ID,String ship){
 		Ship tempShip = ships.get(ship);
 		if(cruiselines.containsKey(cruiseName)){
+			for(Company c : cruiselines.values()){
+				for(Trip t : c.getTrips().values()){
+					if(((CruiseTrip) t).getShip() == tempShip){
+						int temp[] = t.getStartDate();
+						Date s1 = new Date(temp[2],temp[0],temp[1]);	
+						temp = t.getEndDate();
+						Date e1 = new Date(temp[2],temp[0],temp[1]);
+				
+						Date s2 = new Date(startDate[2],startDate[0],startDate[1]);
+						Date e2 = new Date(endDate[2], endDate[0], endDate[1]);
+						if(!(s1.after(e2)) && !(s2.after(e1))){
+							System.err.println("That ship is is already asinged a trip for the given date");
+							return;
+						}
+										
+										
+					}
+				}
+			}
 			Trip cruise = new CruiseTrip(cruiseName,sequence, startDate, endDate, ID, tempShip);
-			 cruiselines.get(cruiseName).addTrip(cruise);
+			cruiselines.get(cruiseName).addTrip(cruise);
 		}else{
 			System.err.println("Error: Cannot create cruise ID:" + ID + " cruiseline:" + cruiseName + " does not exist");
 		}
