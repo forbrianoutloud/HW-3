@@ -1,9 +1,10 @@
 import java.util.HashMap;
+import java.util.Map;
 
 
 public abstract class Company {
 	private String companyName;
-	private HashMap<String,Trip> trips = new HashMap<String,Trip>();
+	private Map<String,Trip> trips = new HashMap<String,Trip>();
 	
 	public Company(String name){
 		companyName = name;
@@ -31,7 +32,7 @@ public abstract class Company {
 		}
 	}
 	
-	public HashMap<String,Trip> getTrips(){
+	public Map<String,Trip> getTrips(){
 		return trips;
 	}
 	

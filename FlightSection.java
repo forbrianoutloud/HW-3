@@ -6,7 +6,7 @@
 
 
 public class FlightSection extends Section{
-	public Class seatClass;
+	
 	public FlightSection(String companyName, String ID, int rows, int cols, Class s) {
 		super(companyName, ID, rows, cols, s);
 	}

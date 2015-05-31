@@ -9,6 +9,7 @@ public abstract class Section {
 	private int[][] seats;
 	private List<Accommodation> booked = new ArrayList<Accommodation>();
     private Class c;
+    
 	public Section (String companyName, String ID, int rows, int cols, Class c){
 		this.companyName = companyName;
 		this.ID = ID;

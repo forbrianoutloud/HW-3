@@ -8,19 +8,15 @@ public abstract class Trip {
 	private String companyName;
 	private int[] startDate;
 	private int[] endDate;
-	private String[] sequence;
-	
-	
-	
-	
-	Map<Class,Section> sections = new HashMap<Class,Section>();
+	private String[] portSequence;
+	private Map<Class,Section> sections = new HashMap<Class,Section>();
 	
 	public Trip(String companyName, String[] sequence, int[] startDate, int[] endDate, String tripID){
 		this.tripID = tripID;
 		this.companyName = companyName;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.sequence = sequence;
+		this.portSequence = sequence;
 	}
 	
 	public String getID(){
@@ -54,10 +50,10 @@ public abstract class Trip {
 		System.out.println("    Trip ID: " + tripID);
 		System.out.print("      Route - ");
 		int i = 0;
-		for(i = 0; i < sequence.length - 1;i++){
-			System.out.print(sequence[i] + " -> " );
+		for(i = 0; i < portSequence.length - 1;i++){
+			System.out.print(portSequence[i] + " -> " );
 		}
-		System.out.println(sequence[i]);
+		System.out.println(portSequence[i]);
 		
 		System.out.print("      StartDate: ");
 		for(i = 0; i < startDate.length -1; i++){
@@ -103,7 +99,6 @@ public abstract class Trip {
 	public Map<Class,Section> getSections(){
 		return sections;
 	}
-
 	
 	/* Used by displaySystemDetails() in systemManager
 	 * Prints out information for flight and calls getDetails method for each section. */
@@ -123,6 +118,5 @@ public abstract class Trip {
 //	public Map<SeatClass,Section> getSections(){
 //		return sections;
 //	}
-
 
 }

@@ -3,10 +3,7 @@
  * Brian Lee
  */
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-//i did this
 public class Airline extends Company {
 	
 	public Airline(String name) {

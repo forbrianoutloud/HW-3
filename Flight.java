@@ -1,3 +1,5 @@
+import java.util.Map;
+
 /* 
  * Josh Richmond
  * Brian Lee
@@ -10,17 +12,16 @@ public class Flight extends Trip{
 	public Flight(String companyName, String[] sequence, int[] startDate,
 			int[] endDate, String tripID) {
 		super(companyName, sequence, startDate, endDate, tripID);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void addSection(Section section){
+		Map<Class, Section> sections = this.getSections();
 		if(!sections.containsKey( section.getclass())){
 			sections.put(section.getclass(), section);
 		}else{
 			System.err.println("Error, Section already exists withing flight");
 		}
 	}
-}
 	
 	/* map used to store sections of each flight */
 //	Map<SeatClass,FlightSection> sections = new HashMap<SeatClass,FlightSection>();
@@ -102,3 +103,4 @@ public class Flight extends Trip{
 //	}
 //
 //}
+}

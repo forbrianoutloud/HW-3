@@ -5,17 +5,14 @@
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
-
-
 
 public class SystemManager {
 	
-	Map<String,Port> airports;
-	Map<String,Port> seaports;
-	Map<String, Company> airlines;
-	Map<String, Company> cruiselines;
-	Map<String, Ship> ships;
+	private Map<String, Port> airports;
+	private Map<String, Port> seaports;
+	private Map<String, Company> airlines;
+	private Map<String, Company> cruiselines;
+	private Map<String, Ship> ships;
 	
 	public SystemManager(){
 		airports = new HashMap<String,Port>();
