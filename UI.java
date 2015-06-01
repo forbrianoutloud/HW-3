@@ -149,7 +149,7 @@ public class UI {
 						continue cmd;
 					}
 					System.out.println("Please enter cabin class \n\t(1) Family\n\t(2) Deluxe Family\n\t(3) Couples\n\t(4) Deluxe Couples)");
-					c = sc.nextLine();
+					c = sc.nextLine().toLowerCase();
 					switch(c){
 					case "1":
 					case "family":
