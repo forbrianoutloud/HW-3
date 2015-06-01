@@ -1,0 +1,12 @@
+HW 2 Part 2
+
+Authors:
+	Josh Richmond
+	Brian Lee
+
+Work Division:
+
+	We developed the code side by side taking turns on typing implementation. We both gave input on design approach,
+encapsulation, potential polymorphism/interfaces, checked for errors, ran tests, commented code, and implemented error 
+handling. We also developed the UML diagram together.
+
